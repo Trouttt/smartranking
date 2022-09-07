@@ -1,9 +1,21 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { PlayersModule } from './players/players.module';
 
 @Module({
-  imports: [PlayersModule],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb+srv://admin:admin@cluster0.jygnugx.mongodb.net/smartranking?retryWrites=true&w=majority',
+      {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      },
+    ),
+    PlayersModule,
+  ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}
